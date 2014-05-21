@@ -13,6 +13,12 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/login', {
+        templateUrl: 'views/login.html'
+      })
+      .when('/task-name', {
+        templateUrl: 'views/task-name.html'
+      })
       .otherwise({
         redirectTo: '/'
       });
