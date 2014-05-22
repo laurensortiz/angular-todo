@@ -1,37 +1,43 @@
+/**
+ * Bootstrap application
+ */
 (function () {
-  'use strict';
+    'use strict';
 
-  var dependencies = [
-    'config/RouteManager',
-    'loginModule',
-    'taskModule'
-  ];
+    var dependencies = [
+        'config/RouteManager',
+        'filters/friendlyUri',
+        'loginModule',
+        'taskModule'
+    ];
 
-  define(dependencies, function (RouteManager, loginModule, taskModule) {
-    var app,
-        appName = 'ToDoList';
+    define(dependencies, function (RouteManager, friendlyUri, loginModule, taskModule) {
 
-    // DI for the app.
-    app = angular.module(appName, [
-      'ngCookies',
-      'ngResource',
-      'ngSanitize',
-      'ngRoute'
-      // , loginModule
-      // , taskModule
-    ]);
+        var app,
+            appName = 'ToDoList';
 
-    // Config routes
-    app.config(RouteManager);
+        // DI for the app.
+        app = angular.module(appName, [
+            'ngCookies',
+            'ngResource',
+            'ngSanitize',
+            'ngRoute',
+            taskModule
+            // , loginModule
+        ]);
 
-    // Bootstrap app
-    angular.element(document).ready(function () {
-      angular.bootstrap(document, [appName]);
+        // Config routes
+        app.config(RouteManager);
+
+        // Filters
+        app.filter('friendlyUri', friendlyUri);
+
+        // Bootstrap app
+        angular.element(document).ready(function () {
+            angular.bootstrap(document, [appName]);
+        });
+
+        return app;
     });
-
-    return app;
-
-  });
-
 
 })();

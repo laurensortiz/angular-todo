@@ -10,23 +10,24 @@
 
     define(dependencies, function () {
 
-        var RouteManager = function ($routeProvider) {
-          $routeProvider
-            .when('/', {
-              templateUrl: 'views/task-list.html'
+    var RouteManager = function ($routeProvider) {
+        $routeProvider
+            .when('/tasks', {
+                templateUrl: 'views/task-list.html',
+                controller: 'taskCtrl'
             })
             .when('/login', {
-              templateUrl: 'views/login.html'
+                templateUrl: 'views/login.html'
             })
-            .when('/task-name', {
-              templateUrl: 'views/task-name.html'
+            .when('/tasks/:listName', {
+                templateUrl: 'views/task-name.html'
             })
             .otherwise({
-              redirectTo: '/'
+              redirectTo: '/tasks'
             });
-        };
+    };
 
-        return ['$routeProvider', RouteManager];
+    return ['$routeProvider', RouteManager];
 
     });
 

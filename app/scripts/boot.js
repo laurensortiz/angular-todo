@@ -1,3 +1,7 @@
+/**
+ * Load all scripts.
+ * Config for Require.js
+ */
 (function () {
   'use strict';
 

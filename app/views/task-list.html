@@ -20,30 +20,10 @@
       </a>
     </p>
 
-    <a href="#/task-name" class="list-group-item">
-      <span class="badge alert-danger">9</span>
-      <span class="badge alert-success">10</span>
-      List One
-    </a>
-    <a href="#/task-name" class="list-group-item">
-      <span class="badge alert-danger">10</span>
-      <span class="badge alert-success">1</span>
-      List Two
-    </a>
-    <a href="#/task-name" class="list-group-item">
-      <span class="badge alert-danger">5</span>
-      <span class="badge alert-success">5</span>
-      List three
-    </a>
-    <a href="#/task-name" class="list-group-item">
-      <span class="badge alert-danger">3</span>
-      <span class="badge alert-success">8</span>
-      List four
-    </a>
-    <a href="#/task-name" class="list-group-item">
-      <span class="badge alert-danger">0</span>
-      <span class="badge alert-success">10</span>
-      List Five
+    <a ng-repeat="task in tasks" href="#/tasks/{{task.listName | friendlyUri}}" class="list-group-item">
+      <!-- <span class="badge alert-danger">9</span> -->
+      <!-- <span class="badge alert-success">10</span> -->
+      {{task.listName}}
     </a>
   </div>
 </div>

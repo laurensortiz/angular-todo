@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "listName": "School",
+    "tasks": [
+      {
+        "name": "School task one",
+        "completed": false
+      },
+      {
+        "name": "School task two",
+        "completed": false
+      },
+      {
+        "name": "School task three",
+        "completed": false
+      },
+      {
+        "name": "School task four",
+        "completed": true
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "listName": "Work",
+    "tasks": [
+      {
+        "name": "Work task one",
+        "completed": false
+      },
+      {
+        "name": "Work task two",
+        "completed": false
+      },
+      {
+        "name": "Work task three",
+        "completed": false
+      },
+      {
+        "name": "Work task four",
+        "completed": true
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "listName": "Pets",
+    "tasks": [
+      {
+        "name": "Pets task one",
+        "completed": false
+      },
+      {
+        "name": "Pets task two",
+        "completed": false
+      },
+      {
+        "name": "Pets task three",
+        "completed": false
+      },
+      {
+        "name": "Pets task four",
+        "completed": true
+      }
+    ]
+  }
+]
