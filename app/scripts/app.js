@@ -1,25 +1,37 @@
-'use strict';
+(function () {
+  'use strict';
 
-angular
-  .module('uarApp', [
-    'ngCookies',
-    'ngResource',
-    'ngSanitize',
-    'ngRoute'
-  ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/login', {
-        templateUrl: 'views/login.html'
-      })
-      .when('/task-name', {
-        templateUrl: 'views/task-name.html'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
+  var dependencies = [
+    'config/RouteManager',
+    'loginModule',
+    'taskModule'
+  ];
+
+  define(dependencies, function (RouteManager, loginModule, taskModule) {
+    var app,
+        appName = 'ToDoList';
+
+    // DI for the app.
+    app = angular.module(appName, [
+      'ngCookies',
+      'ngResource',
+      'ngSanitize',
+      'ngRoute'
+      // , loginModule
+      // , taskModule
+    ]);
+
+    // Config routes
+    app.config(RouteManager);
+
+    // Bootstrap app
+    angular.element(document).ready(function () {
+      angular.bootstrap(document, [appName]);
+    });
+
+    return app;
+
   });
+
+
+})();
