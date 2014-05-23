@@ -11,6 +11,10 @@
         var tasksCtrl = function ($scope, taskFactory) {
             $scope.lists = [];
 
+            /**
+             * Create a new todo list item
+             * @method newList
+             */
             $scope.newList = function () {
                 if ($scope.list) {
                     var id = $scope['list'].replace(/\s+/g, '-').toLowerCase(),
@@ -28,8 +32,6 @@
                     // @TODO Move logic to Service
                 }
             };
-
-
         };
 
         return ['$scope', 'taskFactory', tasksCtrl];

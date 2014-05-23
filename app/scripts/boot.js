@@ -8,6 +8,7 @@
   // Use Head.js for loading all scripts async
   head.js(
     { require: 'bower_components/requirejs/require.js' },
+    { modernizr: 'bower_components/modernizr/modernizr.js' },
     { jQuery: 'bower_components/jquery/dist/jquery.js' },
     { angular: 'bower_components/angular/angular.js' },
     { ngRoute: 'bower_components/angular-route/angular-route.min.js' },
