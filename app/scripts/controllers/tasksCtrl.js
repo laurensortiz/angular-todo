@@ -8,8 +8,17 @@
 
     define(dependencies, function () {
 
-        var tasksCtrl = function ($scope, taskFactory) {
+        var tasksCtrl = function ($scope, taskFactory, localstorageService) {
             $scope.lists = [];
+
+            $scope.init = function () {
+                localstorageService.checkSupport();
+            };
+
+            $scope.$on('localstorage-unavailable', function (event) {
+                // @TODO trigger modal telling that localstorage is not available
+                // and the
+            });
 
             /**
              * Create a new todo list item
@@ -32,9 +41,11 @@
                     // @TODO Move logic to Service
                 }
             };
+
+            $scope.init();
         };
 
-        return ['$scope', 'taskFactory', tasksCtrl];
+        return ['$scope', 'taskFactory', 'localstorageService', tasksCtrl];
 
     });
 

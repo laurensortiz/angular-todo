@@ -7,11 +7,12 @@
     var dependencies = [
         'config/RouteManager',
         'filters/friendlyUri',
+        'services/localstorage',
         'loginModule',
         'taskModule'
     ];
 
-    define(dependencies, function (RouteManager, friendlyUri, loginModule, taskModule) {
+    define(dependencies, function (RouteManager, friendlyUri, localstorage, loginModule, taskModule) {
 
         var app,
             appName = 'ToDoList';
@@ -25,6 +26,9 @@
             taskModule
             // , loginModule
         ]);
+
+        // Shared localstorage service
+        app.factory('localstorageService', localstorage);
 
         // Config routes
         app.config(RouteManager);
