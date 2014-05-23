@@ -14,7 +14,8 @@
         angular.module(moduleName, [])
             .controller('tasksCtrl', tasksCtrl)
             .controller('listCtrl', listCtrl)
-            .factory('taskFactory', taskFactory);
+            .factory('taskFactory', taskFactory)
+            .constant('TODO_LISTS', 'todo-lists');
 
         return moduleName;
 
