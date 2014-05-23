@@ -1,16 +1,8 @@
 <div class="row">
   <div class="col-sm-12">
-    <div class="alert alert-success">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <strong>List created</strong>
-    </div>
-    <div class="alert alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <strong>Oopss! Something went wrong</strong>
-    </div>
     <div class="header">
-      <h3>List title</h3>
-      <p>You don't have any task yet!</p>
+      <h3>{{list.listName}} To-Do List</h3>
+      <p ng-hide="!list.tasks.length">You don't have any task yet!</p>
     </div>
     <form action="#" method="post">
       <div class="form-group">
@@ -18,7 +10,7 @@
         <input type="text" id="new-task" class="form-control" name="task" placeholder="Add a new task to complete">
       </div>
       <ul id="task-list" class="list-group">
-        <li ng-repeat="task in task.tasks" ng-class="{completed : task.completed}" class="list-group-item">
+        <li ng-repeat="task in list.tasks" ng-class="{completed : task.completed}" class="list-group-item">
             <label>
                 <input type="checkbox" ng-model="task.completed"> {{task.name}}
             </label>

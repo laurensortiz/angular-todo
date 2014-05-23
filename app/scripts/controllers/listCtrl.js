@@ -13,7 +13,7 @@
             var task = taskFactory.get({ task: $routeParams.task });
             $scope.task = task.$promise
                 .then(function (data) {
-                    $scope.task = data;
+                    $scope.list = data;
                 })
                 // Redirect on error
                 .catch(function (data) {
