@@ -14,13 +14,14 @@
         $routeProvider
             .when('/tasks', {
                 templateUrl: 'views/task-list.html',
-                controller: 'taskCtrl'
+                controller: 'tasksCtrl'
+            })
+            .when('/tasks/:task', {
+                templateUrl: 'views/task-name.html',
+                controller: 'listCtrl'
             })
             .when('/login', {
                 templateUrl: 'views/login.html'
-            })
-            .when('/tasks/:listName', {
-                templateUrl: 'views/task-name.html'
             })
             .otherwise({
               redirectTo: '/tasks'

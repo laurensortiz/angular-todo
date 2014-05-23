@@ -1,0 +1,22 @@
+{
+  "id": "work",
+  "listName": "Work",
+  "tasks": [
+    {
+      "name": "Work task one",
+      "completed": false
+    },
+    {
+      "name": "Work task two",
+      "completed": true
+    },
+    {
+      "name": "Work task three",
+      "completed": false
+    },
+    {
+      "name": "Work task four",
+      "completed": true
+    }
+  ]
+}

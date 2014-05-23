@@ -96,3 +96,18 @@ body {
         border-bottom: 0;
     }
 }
+
+
+.completed {
+    background: #cecece;
+    color: #8c8c8c;
+    text-decoration: line-through;
+}
+
+#task-list {
+    li { padding: 0; }
+    label {
+        display: block;
+        padding: 10px 15px;
+    }
+}

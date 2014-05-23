@@ -17,13 +17,12 @@
         <label class="sr-only" for="new-task">Add a new task to complete</label>
         <input type="text" id="new-task" class="form-control" name="task" placeholder="Add a new task to complete">
       </div>
-      <ul class="list-group">
-        <li class="list-group-item"><label><input type="checkbox"> Task one</label></li>
-        <li class="list-group-item"><label><input type="checkbox"> Task two</label></li>
-        <li class="list-group-item"><label><input type="checkbox"> Task three</label></li>
-        <li class="list-group-item text-muted"><label><input type="checkbox"> Task four</label></li>
-        <li class="list-group-item"><label><input type="checkbox"> Task five</label></li>
-        <li class="list-group-item text-muted"><label><input type="checkbox"> Task six</label></li>
+      <ul id="task-list" class="list-group">
+        <li ng-repeat="task in task.tasks" ng-class="{completed : task.completed}" class="list-group-item">
+            <label>
+                <input type="checkbox" ng-model="task.completed"> {{task.name}}
+            </label>
+        </li>
       </ul>
       <div class="form-group">
         <button type="submit" class="btn btn-danger btn-block btn-lg">

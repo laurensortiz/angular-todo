@@ -1,0 +1,22 @@
+{
+  "id": "pets",
+  "listName": "Pets",
+  "tasks": [
+    {
+      "name": "Pets task one",
+      "completed": true
+    },
+    {
+      "name": "Pets task two",
+      "completed": false
+    },
+    {
+      "name": "Pets task three",
+      "completed": false
+    },
+    {
+      "name": "Pets task four",
+      "completed": false
+    }
+  ]
+}

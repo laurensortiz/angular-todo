@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": "school",
     "listName": "School",
     "tasks": [
       {
@@ -22,7 +22,7 @@
     ]
   },
   {
-    "id": 2,
+    "id": "work",
     "listName": "Work",
     "tasks": [
       {
@@ -44,7 +44,7 @@
     ]
   },
   {
-    "id": 1,
+    "id": "pets",
     "listName": "Pets",
     "tasks": [
       {

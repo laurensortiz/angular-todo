@@ -3,15 +3,17 @@
 
     var dependencies = [
         'services/taskFactory',
-        'controllers/taskCtrl'
+        'controllers/tasksCtrl',
+        'controllers/listCtrl'
     ];
 
-    define(dependencies, function (taskFactory, taskCtrl) {
+    define(dependencies, function (taskFactory, tasksCtrl, listCtrl) {
 
         var moduleName = 'ToDoList.Tasks';
 
         angular.module(moduleName, [])
-            .controller('taskCtrl', taskCtrl)
+            .controller('tasksCtrl', tasksCtrl)
+            .controller('listCtrl', listCtrl)
             .factory('taskFactory', taskFactory);
 
         return moduleName;
