@@ -4,49 +4,45 @@
 (function () {
     'use strict';
 
-    var dependencies = [];
+    var dependencies = [
+        'controllers/modalCtrl'
+    ];
 
-    define(dependencies, function () {
+    define(dependencies, function (modalCtrl) {
 
-        var tasksCtrl = function ($scope, taskFactory, localstorageService) {
+        var tasksCtrl = function ($scope, $modal, $filter, taskFactory, localstorageService) {
+            // Tasks lists
             $scope.lists = [];
-
-            $scope.init = function () {
-                localstorageService.checkSupport();
-            };
-
-            $scope.$on('localstorage-unavailable', function (event) {
-                // @TODO trigger modal telling that localstorage is not available
-                // and the
-            });
 
             /**
              * Create a new todo list item
+             * subscribed to 'listCreated' pub. event
              * @method newList
+             * @TODO Move logic to LocalStorage Service
              */
-            $scope.newList = function () {
-                if ($scope.list) {
-                    var id = $scope['list'].replace(/\s+/g, '-').toLowerCase(),
-                        listName = $scope.list;
+            $scope.$on('listCreated', function (event, data) {
 
-                    $scope.lists.push({
-                        'id': id,
-                        'listName': listName
+                var id = $filter('friendlyUri')(data.listName),
+                    listName = data.listName;
+
+                $scope.lists.push({
+                    'id': id,
+                    'listName': listName
+                });
+            });
+
+            /**
+             * Open modal
+             */
+            $scope.openModal = function () {
+                var modalInstance = $modal.open({
+                        templateUrl: 'views/create-task-modal.html',
+                        controller: modalCtrl
                     });
-
-                    $scope.list = '';
-
-                    // @TODO Close modal
-                    // @TODO Broadcast event
-                    // @TODO Move logic to Service
-                }
             };
-
-            $scope.init();
         };
 
-        return ['$scope', 'taskFactory', 'localstorageService', tasksCtrl];
-
+        return ['$scope', '$modal', '$filter', 'taskFactory', 'localstorageService', tasksCtrl];
     });
 
 })();

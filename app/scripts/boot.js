@@ -16,7 +16,7 @@
     { ngResource: 'bower_components/angular-resource/angular-resource.min.js' },
     { ngCookie: 'bower_components/angular-cookies/angular-cookies.min.js' },
     { ngSanitize: 'bower_components/angular-sanitize/angular-sanitize.min.js' },
-    { uiBootstrap: 'bower_components/angular-bootstrap/ui-bootstrap-tpls.js' },
+    { uiBootstrapTpl: 'bower_components/angular-bootstrap/ui-bootstrap-tpls.js' },
     { bootstrapModal: 'bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/modal.js'},
     { bootstrapButton: 'bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/button.js' },
     { bootstrapCarousel: 'bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/carousel.js' },
