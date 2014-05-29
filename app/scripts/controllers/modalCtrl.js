@@ -8,17 +8,28 @@
 
     define(dependencies, function () {
 
-        var modalCtrl = function ($scope, $modalInstance, $rootScope) {
+        var modalCtrl = function ($scope, $filter, $modalInstance, $rootScope) {
             // Use an object. So angular will look on the prototype chain.
             $scope.data = {
-                listName: '',
+                name: '',
                 myForm: ''
             };
 
+            /**
+             * Watch when data.name changes for updating the $scope.id property
+             * @return {[type]} [description]
+             */
+            $scope.$watch('data.name', function () {
+                $scope.id = $filter('friendlyUri')($scope.data.name);
+            });
+
             $scope.newList = function () {
                 if ($scope.data.myForm.$valid) {
-                    $rootScope.$broadcast('list.form.submitted', { listName: $scope.data.listName});
-                    $modalInstance.close($scope.data.listName);
+                    $rootScope.$broadcast('list.form.submitted', {
+                        name: $scope.data.name,
+                        id: $scope.id
+                    });
+                    $modalInstance.close($scope.data.name);
                 }
             };
 
@@ -30,7 +41,7 @@
 
         };
 
-        return ['$scope', '$modalInstance', '$rootScope', modalCtrl];
+        return ['$scope', '$filter', '$modalInstance', '$rootScope', modalCtrl];
 
     });
 

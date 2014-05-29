@@ -9,7 +9,7 @@
 
     define(dependencies, function () {
 
-        var localStorageService = function ($rootScope, $filter) {
+        var localStorageService = function ($rootScope) {
 
             var resultItems = [];
                 /**
@@ -18,29 +18,33 @@
                  * @return {Array} Items
                  */
             var getItems = function (key) {
-                    var items = JSON.parse( localStorage.getItem(key));
+                    var items = JSON.parse(localStorage.getItem(key) || '[]');
 
-                    if (items) {
-                        resultItems.push(items);
-                    }
-
-                    return resultItems;
+                    return items;
                 },
                 /**
-                 * Set localstorage item
+                 * Store localstorage item
                  * @public
                  * @param {Object} data Data to store on localStorage
                  */
                 storeItem = function (key, data) {
 
+                    // Create an object using the data from the FORM
                     var item = transformData(data);
 
+                    // If resultItems is empty, fill with the existent LS data for 'key'
+                    if (!resultItems.length) {
+                        resultItems = getItems(key);
+                    }
+
+                    // Create an array for store all JSON objects
                     resultItems.push(item);
+
                     // Store the data using html5 localStorage
-                    localStorage.setItem(key, resultItems);
+                    localStorage.setItem(key, JSON.stringify(resultItems));
 
                     // Broadcast event
-                    $rootScope.$broadcast('list.updated', resultItems);
+                    $rootScope.$broadcast('list.updated', item);
                 },
                 /**
                  * Clear localstorage
@@ -50,19 +54,21 @@
                     console.log('Clear storage...');
                 },
                 /**
-                 * Transform data it is easy to store using html5 localStorage
+                 * Transform data so it will be easy to store using html5 localStorage
                  * @method transformData
                  * @private
                  * @return {Object} Transformed data
                  */
                 transformData = function (data) {
                     // Create the object to store
-                    var item = {
-                        'id': $filter('friendlyUri')(data.listName),
-                        'listName': data.listName
-                    };
+                    var item = {},
+                        element;
 
-                    return JSON.stringify(item);
+                    for (element in data) {
+                        item[element] = data[element];
+                    }
+
+                    return item;
                 };
 
             return {
@@ -72,7 +78,7 @@
             };
         };
 
-        return ['$rootScope', '$filter', localStorageService];
+        return ['$rootScope', localStorageService];
     });
 
 })();
