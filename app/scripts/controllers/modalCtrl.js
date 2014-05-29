@@ -17,7 +17,7 @@
 
             $scope.newList = function () {
                 if ($scope.data.myForm.$valid) {
-                    $rootScope.$broadcast('listCreated', { listName: $scope.data.listName});
+                    $rootScope.$broadcast('list.form.submitted', { listName: $scope.data.listName});
                     $modalInstance.close($scope.data.listName);
                 }
             };

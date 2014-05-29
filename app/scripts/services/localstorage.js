@@ -1,5 +1,5 @@
 /**
- * taskFactory
+ * localStorage service
  * Get all tasks
  */
 (function () {
@@ -9,46 +9,70 @@
 
     define(dependencies, function () {
 
-        var localStorageService = function ($rootScope) {
+        var localStorageService = function ($rootScope, $filter) {
 
-                /**
-                 * Check support for localstorage
-                 * @return Broadcast 'localstorage-available' message
-                 */
-            var checkSupport = function () {
-                    if (Modernizr.localstorage) {
-                        $rootScope.$broadcast('localstorage-unavailable');
-                    }
-                },
+            var resultItems = [];
                 /**
                  * Get localstorage items
+                 * @public
                  * @return {Array} Items
                  */
-                getItems = function (key) {
-                    console.log('Get items...');
+            var getItems = function (key) {
+                    var items = JSON.parse( localStorage.getItem(key));
+
+                    if (items) {
+                        resultItems.push(items);
+                    }
+
+                    return resultItems;
                 },
                 /**
                  * Set localstorage item
+                 * @public
+                 * @param {Object} data Data to store on localStorage
                  */
-                setItems = function (item) {
-                    console.log('Set Items...');
+                storeItem = function (key, data) {
+
+                    var item = transformData(data);
+
+                    resultItems.push(item);
+                    // Store the data using html5 localStorage
+                    localStorage.setItem(key, resultItems);
+
+                    // Broadcast event
+                    $rootScope.$broadcast('list.updated', resultItems);
                 },
                 /**
                  * Clear localstorage
+                 * @public
                  */
                 clearStorage = function () {
                     console.log('Clear storage...');
+                },
+                /**
+                 * Transform data it is easy to store using html5 localStorage
+                 * @method transformData
+                 * @private
+                 * @return {Object} Transformed data
+                 */
+                transformData = function (data) {
+                    // Create the object to store
+                    var item = {
+                        'id': $filter('friendlyUri')(data.listName),
+                        'listName': data.listName
+                    };
+
+                    return JSON.stringify(item);
                 };
 
             return {
-                checkSupport: checkSupport,
                 getItems: getItems,
-                setItems: setItems,
+                storeItem: storeItem,
                 clearStorage: clearStorage
             };
         };
 
-        return ['$rootScope', localStorageService];
+        return ['$rootScope', '$filter', localStorageService];
     });
 
 })();

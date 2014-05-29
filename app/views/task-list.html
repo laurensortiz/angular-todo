@@ -1,15 +1,6 @@
 <div class="row">
   <div class="col-sm-12">
-    <!--
-    <div class="alert alert-success">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <strong>Task created</strong>
-    </div>
-    <div class="alert alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <strong>Oopss! Something went wrong</strong>
-    </div>
-    -->
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
     <div class="header">
       <h3>Tasks lists</h3>
       <p ng-hide="tasks.length">You don't have any list yet!</p>
