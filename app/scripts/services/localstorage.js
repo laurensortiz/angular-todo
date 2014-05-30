@@ -32,10 +32,8 @@
                     // Create an object using the data from the FORM
                     var item = transformData(data);
 
-                    // If resultItems is empty, fill with the existent LS data for 'key'
-                    if (!resultItems.length) {
-                        resultItems = getItems(key);
-                    }
+                    // Get previous items for the key
+                    resultItems = getItems(key);
 
                     // Create an array for store all JSON objects
                     resultItems.push(item);

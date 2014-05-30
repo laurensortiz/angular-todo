@@ -16,6 +16,7 @@
 
             // Register new task
             $scope.create = function () {
+
                 if ($scope.myForm.$valid) {
                     // Create object to store
                     data = {
