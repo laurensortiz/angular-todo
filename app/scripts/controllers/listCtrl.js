@@ -8,27 +8,35 @@
 
     define(dependencies, function () {
 
-        var listCtrl = function ($scope, $routeParams, $location, taskFactory) {
+        var listCtrl = function ($scope, $routeParams, localstorageService, taskFactory) {
 
-            // List information
-            $scope.list = {};
-
-            // Get specific task
-            taskFactory.get({ task: $routeParams.task }).$promise
-                .then(function (data)  { $scope.list = data; })
-                .catch(function (data) { $location.path("/"); });
+            var routeName = $routeParams.task,
+                data,
+                tasks = $scope.tasks = localstorageService.getItems(routeName);
 
             // Register new task
             $scope.create = function () {
-                if ($scope.newTask) {
-                    $scope.list.tasks.push({name: $scope.newTask, completed: false});
+                if ($scope.myForm.$valid) {
+                    // Create object to store
+                    data = {
+                            name: $scope.newTask,
+                            completed: false
+                        };
+
+                    localstorageService.storeItem(routeName, data);
+
+                    // Broadcast event if needed
+                    // $rootScope.$broadcast('task.created');
+                    $scope.tasks.push(data);
+
+                    // Clear input
                     $scope.newTask = '';
                 }
             };
 
         };
 
-        return ['$scope', '$routeParams', '$location', 'taskFactory', listCtrl];
+        return ['$scope', '$routeParams', 'localstorageService', 'taskFactory', listCtrl];
 
     });
 

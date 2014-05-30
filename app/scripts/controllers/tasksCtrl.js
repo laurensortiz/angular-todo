@@ -10,7 +10,7 @@
 
     define(dependencies, function (modalCtrl) {
 
-        var tasksCtrl = function ($scope, $modal, TODO_LISTS, taskFactory, localstorageService) {
+        var tasksCtrl = function ($scope, $modal, $rootScope, TODO_LISTS, taskFactory, localstorageService) {
             // Tasks lists
             var lists = $scope.lists = localstorageService.getItems(TODO_LISTS);
 
@@ -21,15 +21,8 @@
              */
             $scope.$on('list.form.submitted', function (event, data) {
                 localstorageService.storeItem(TODO_LISTS, data);
-            });
-
-            /**
-             * Create a new todo list item
-             * @param  {Object} event The event data
-             * @param  {Object} data  Data stored
-             * @public
-             */
-            $scope.$on('list.updated', function (event, data) {
+                // Broadcast event if needed
+                // $scope.$broadcast('list.updated', item);
                 $scope.lists.push(data);
             });
 
@@ -47,7 +40,7 @@
 
         };
 
-        return ['$scope', '$modal', 'TODO_LISTS','taskFactory', 'localstorageService', tasksCtrl];
+        return ['$scope', '$modal', '$rootScope', 'TODO_LISTS','taskFactory', 'localstorageService', tasksCtrl];
     });
 
 })();

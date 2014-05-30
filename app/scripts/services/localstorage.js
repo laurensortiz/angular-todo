@@ -42,9 +42,6 @@
 
                     // Store the data using html5 localStorage
                     localStorage.setItem(key, JSON.stringify(resultItems));
-
-                    // Broadcast event
-                    $rootScope.$broadcast('list.updated', item);
                 },
                 /**
                  * Clear localstorage
