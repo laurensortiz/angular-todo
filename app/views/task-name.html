@@ -12,16 +12,16 @@
       <ul id="task-list" class="list-group">
         <li ng-repeat="task in tasks" ng-class="{completed : task.completed}" class="list-group-item">
             <label>
-                <input type="checkbox" ng-model="task.completed"> {{task.name}}
+                <input type="checkbox" ng-model="task.completed" ng-change="complete(task)"> {{task.name}}
             </label>
         </li>
       </ul>
-      <div class="form-group">
-        <button type="submit" class="btn btn-danger btn-block btn-lg">
+    </form>
+    <div class="form-group">
+        <button type="submit" class="btn btn-danger btn-block btn-lg" ng-click="clearCompleted()">
           <span class="glyphicon glyphicon-remove"></span>
           Clear completed tasks
         </button>
       </div>
-    </form>
   </div>
 </div>

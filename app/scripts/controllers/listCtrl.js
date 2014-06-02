@@ -12,11 +12,12 @@
 
             var routeName = $routeParams.task,
                 data,
-                tasks = $scope.tasks = localstorageService.getItems(routeName);
+                tasks;
+
+            $scope.tasks = tasks = localstorageService.getItems(routeName);
 
             // Register new task
             $scope.create = function () {
-
                 if ($scope.myForm.$valid) {
                     // Create object to store
                     data = {
@@ -33,6 +34,25 @@
                     // Clear input
                     $scope.newTask = '';
                 }
+            };
+
+            /**
+             * Mark an item as completed
+             * @param  {Object} element Element marked as completed
+             */
+            $scope.complete = function (element) {
+                // Store partial state on LS
+                localstorageService.updateItem(routeName, $scope.tasks);
+            };
+
+            /**
+             * Clear completed tasks from the list
+             */
+            $scope.clearCompleted = function () {
+                $scope.tasks = tasks.filter(function (task) {
+                    return !task.completed;
+                });
+                localstorageService.updateItem(routeName, $scope.tasks);
             };
 
         };
