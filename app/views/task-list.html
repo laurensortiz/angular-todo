@@ -12,10 +12,12 @@
       </a>
     </p>
 
-    <a ng-repeat="list in lists" href="#/tasks/{{list.name | friendlyUri}}" class="list-group-item">
-      <!-- <span class="badge alert-danger">9</span> -->
-      <!-- <span class="badge alert-success">10</span> -->
-      {{list.name}}
-    </a>
+    <div ui-sortable ng-model="lists">
+        <a ng-repeat="list in lists" href="#/tasks/{{list.name | friendlyUri}}" class="list-group-item">
+          <!-- <span class="badge alert-danger">9</span> -->
+          <!-- <span class="badge alert-success">10</span> -->
+          {{list.name}}
+        </a>
+    </div>
   </div>
 </div>

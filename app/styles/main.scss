@@ -107,6 +107,7 @@ body {
 #task-list {
     li { padding: 0; }
     label {
+        cursor: pointer;
         display: block;
         padding: 10px 15px;
     }

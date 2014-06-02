@@ -14,6 +14,8 @@
                 data,
                 tasks;
 
+            $scope.title = routeName;
+
             $scope.tasks = tasks = localstorageService.getItems(routeName);
 
             // Register new task

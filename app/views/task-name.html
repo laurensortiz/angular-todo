@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="header">
-      <h3>{{list.listName}} To-Do List</h3>
+      <h3>{{title}} To-Do List</h3>
       <p ng-hide="!list.tasks.length">You don't have any task yet!</p>
     </div>
     <form name="myForm" ng-submit="create()">
@@ -9,7 +9,7 @@
         <label class="sr-only" for="new-task">Add a new task to complete</label>
         <input type="text" id="new-task" class="form-control" name="newTask" placeholder="Add a new task to complete" ng-model="newTask" required>
       </div>
-      <ul id="task-list" class="list-group">
+      <ul id="task-list" class="list-group" ui-sortable ng-model="tasks">
         <li ng-repeat="task in tasks" ng-class="{completed : task.completed}" class="list-group-item">
             <label>
                 <input type="checkbox" ng-model="task.completed" ng-change="complete(task)"> {{task.name}}

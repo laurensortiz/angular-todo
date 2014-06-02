@@ -11,7 +11,10 @@
 
         var moduleName = 'ToDoList.Tasks';
 
-        angular.module(moduleName, ['ui.bootstrap'])
+        angular.module(moduleName, [
+                'ui.bootstrap',
+                'ui.sortable'
+            ])
             .controller('tasksCtrl', tasksCtrl)
             .controller('listCtrl', listCtrl)
             .factory('taskFactory', taskFactory)
