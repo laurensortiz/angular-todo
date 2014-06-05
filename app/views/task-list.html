@@ -3,7 +3,7 @@
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
     <div class="header">
       <h3>Tasks lists</h3>
-      <p ng-hide="tasks.length">You don't have any list yet!</p>
+      <p ng-show="!lists.length">You don't have any list yet!</p>
     </div>
 
     <p>

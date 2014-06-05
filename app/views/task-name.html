@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="header">
-      <h3>{{title}} To-Do List</h3>
-      <p ng-hide="!list.tasks.length">You don't have any task yet!</p>
+      <h3>To-Do List: {{title | prettyName}}</h3>
+      <p ng-show="!tasks.length">You don't have any task yet!</p>
     </div>
     <form name="myForm" ng-submit="create()">
       <div class="form-group">

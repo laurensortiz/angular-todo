@@ -7,13 +7,14 @@
     var dependencies = [
         'config/RouteManager',
         'filters/friendlyUri',
+        'filters/prettyname',
         'services/localstorage',
         'directives/navDirective',
         'loginModule',
         'taskModule'
     ];
 
-    define(dependencies, function (RouteManager, friendlyUri, localstorage, navDirective, loginModule, taskModule) {
+    define(dependencies, function (RouteManager, friendlyUri, prettyName, localstorage, navDirective, loginModule, taskModule) {
 
         var app,
             appName = 'ToDoList';
@@ -39,6 +40,7 @@
 
         // Filters
         app.filter('friendlyUri', friendlyUri);
+        app.filter('prettyName', prettyName);
 
         // Bootstrap app
         angular.element(document).ready(function () {
