@@ -26,6 +26,10 @@
                     $scope.alerts.push({
                         message: 'Task "' + tasks[task].name + '" successfully deleted!'
                     });
+                    // Close alerts after 3500 ms
+                    $timeout(function () {
+                        $scope.closeAlert( $scope.alerts[$scope.alerts.length - 1] );
+                    }, 3500);
                 }
             };
 
@@ -43,7 +47,7 @@
                             name: $scope.newTask,
                             completed: false
                         };
-
+debugger;
                     localstorageService.storeItem(routeName, data);
 
                     // Broadcast event if needed

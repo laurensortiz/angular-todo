@@ -29,7 +29,7 @@
 
                 // Create alerts
                 $scope.alerts.push({
-                    message: 'Lisr "' + data.name + '" added to your list'
+                    message: 'List "' + data.name + '" added to your list'
                 });
 
                 // Close alerts after 3500 ms
