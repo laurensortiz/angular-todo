@@ -10,9 +10,11 @@
 
     define(dependencies, function (modalCtrl) {
 
-        var tasksCtrl = function ($scope, $modal, $rootScope, TODO_LISTS, taskFactory, localstorageService) {
+        var tasksCtrl = function ($scope, $timeout, $modal, $rootScope, TODO_LISTS, taskFactory, localstorageService) {
             // Tasks lists
             var lists = $scope.lists = localstorageService.getItems(TODO_LISTS);
+
+            $scope.alerts = [];
 
             /**
              * Create LIST form submitted
@@ -24,6 +26,16 @@
                 // Broadcast event if needed
                 // $scope.$broadcast('list.updated', item);
                 $scope.lists.push(data);
+
+                // Create alerts
+                $scope.alerts.push({
+                    message: 'Lisr "' + data.name + '" added to your list'
+                });
+
+                // Close alerts after 3500 ms
+                $timeout(function () {
+                    $scope.closeAlert( $scope.alerts[$scope.alerts.length - 1] );
+                }, 3500);
             });
 
             /**
@@ -38,9 +50,16 @@
                     modalInstance = $modal.open(config);
             };
 
+            /**
+             * Close alerts
+             */
+            $scope.closeAlert = function(index) {
+                $scope.alerts.splice(index, 1);
+            };
+
         };
 
-        return ['$scope', '$modal', '$rootScope', 'TODO_LISTS','taskFactory', 'localstorageService', tasksCtrl];
+        return ['$scope', '$timeout',  '$modal', '$rootScope', 'TODO_LISTS','taskFactory', 'localstorageService', tasksCtrl];
     });
 
 })();

@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-12">
-    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+    <alert ng-repeat="alert in alerts" type="success" close="closeAlert($index)">{{alert.message}}</alert>
     <div class="header">
       <h3>Tasks lists</h3>
       <p ng-show="!lists.length">You don't have any list yet!</p>

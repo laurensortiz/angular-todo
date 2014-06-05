@@ -8,11 +8,28 @@
 
     define(dependencies, function () {
 
-        var listCtrl = function ($scope, $routeParams, localstorageService, taskFactory) {
+        var listCtrl = function ($scope, $timeout, $routeParams, localstorageService, taskFactory) {
 
             var routeName = $routeParams.task,
                 data,
+                deletedTasks = [],
                 tasks;
+
+            /**
+             * Populate the array of deleted tasks
+             * in order to show the according alerts
+             * @method getDeleted
+             * @param  {Array}   tasks Tasks to be deleted
+             */
+            var getDeleted = function (tasks) {
+                for (var task in tasks) {
+                    $scope.alerts.push({
+                        message: 'Task "' + tasks[task].name + '" successfully deleted!'
+                    });
+                }
+            };
+
+            $scope.alerts = [];
 
             $scope.title = routeName;
 
@@ -33,9 +50,26 @@
                     // $rootScope.$broadcast('task.created');
                     $scope.tasks.push(data);
 
+                    // Create alerts
+                    $scope.alerts.push({
+                        message: 'Task "' + data.name + '" added to your list'
+                    });
+
+                    // Close alerts after 3500 ms
+                    $timeout(function () {
+                        $scope.closeAlert( $scope.alerts[$scope.alerts.length - 1] );
+                    }, 3500);
+
                     // Clear input
                     $scope.newTask = '';
                 }
+            };
+
+            /**
+             * Close alerts
+             */
+            $scope.closeAlert = function(index) {
+                $scope.alerts.splice(index, 1);
             };
 
             /**
@@ -51,15 +85,24 @@
              * Clear completed tasks from the list
              */
             $scope.clearCompleted = function () {
+                // Store deleted tasks
+                var deletedTasks = tasks.filter(function (task) {
+                    return task.completed
+                });
+
+                // Add deleted tasks to the alerts array
+                getDeleted(deletedTasks);
+
                 $scope.tasks = tasks.filter(function (task) {
                     return !task.completed;
                 });
+
                 localstorageService.updateItem(routeName, $scope.tasks);
             };
 
         };
 
-        return ['$scope', '$routeParams', 'localstorageService', 'taskFactory', listCtrl];
+        return ['$scope', '$timeout', '$routeParams', 'localstorageService', 'taskFactory', listCtrl];
 
     });
 
