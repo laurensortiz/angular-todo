@@ -13,8 +13,7 @@
     var RouteManager = function ($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'views/login.html',
-                controller: 'loginCtrl'
+                templateUrl: 'views/login.html'
             })
             .when('/tasks', {
                 templateUrl: 'views/task-list.html',
@@ -28,7 +27,7 @@
                 templateUrl: 'views/login.html'
             })
             .otherwise({
-              redirectTo: '/tasks'
+              redirectTo: '/login'
             });
     };
 

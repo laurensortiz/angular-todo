@@ -7,6 +7,12 @@
 
         var loginCtrl = function ($scope, $location, loginService, auth) {
 
+            $scope.$on('$routeChangeSuccess', function () {
+                $scope.isLoggedIn = loginService.isLoggedIn();
+            console.log($scope.isLoggedIn);
+            });
+
+
 
             $scope.doLogin = function () {
                 if ($scope.loginForm.$valid) {

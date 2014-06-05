@@ -8,11 +8,12 @@
         'config/RouteManager',
         'filters/friendlyUri',
         'services/localstorage',
+        'directives/loginhide',
         'loginModule',
         'taskModule'
     ];
 
-    define(dependencies, function (RouteManager, friendlyUri, localstorage, loginModule, taskModule) {
+    define(dependencies, function (RouteManager, friendlyUri, localstorage, loginHide, loginModule, taskModule) {
 
         var app,
             appName = 'ToDoList';
@@ -23,12 +24,16 @@
             'ngResource',
             'ngSanitize',
             'ngRoute',
+            'ui.utils',
             taskModule,
             loginModule
         ]);
 
         // Shared localstorage service
         app.factory('localstorageService', localstorage);
+
+        // Shared directive
+        app.directive('loginHide', loginHide);
 
         // Config routes
         app.config(RouteManager);

@@ -22,6 +22,7 @@
     { ngSanitize: 'bower_components/angular-sanitize/angular-sanitize.min.js' },
     { ngSortable: 'bower_components/angular-ui-sortable/sortable.min.js' },
     { uiBootstrapTpl: 'bower_components/angular-bootstrap/ui-bootstrap-tpls.js' },
+    { uiUtils: 'bower_components/angular-ui-utils/ui-utils.min.js' },
     { bootstrapModal: 'bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/modal.js'},
     { bootstrapButton: 'bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/button.js' },
     { bootstrapCarousel: 'bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/carousel.js' },
