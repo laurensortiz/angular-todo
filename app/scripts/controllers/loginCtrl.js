@@ -1,3 +1,6 @@
+/**
+ * Login Controller
+ */
 (function() {
     'use strict';
 
@@ -6,13 +9,6 @@
     define(dependencies, function () {
 
         var loginCtrl = function ($scope, $location, loginService, auth) {
-
-            $scope.$on('$routeChangeSuccess', function () {
-                $scope.isLoggedIn = loginService.isLoggedIn();
-            console.log($scope.isLoggedIn);
-            });
-
-
 
             $scope.doLogin = function () {
                 if ($scope.loginForm.$valid) {
@@ -23,17 +19,11 @@
 
                     promise.then(function () {
                         // Success - Redirect
-                        $location.path('/');
+                        $location.path('/tasks');
                     }, function (data) {
                         // Error
                         alert(data);
                     });
-                }
-            };
-
-            $scope.doLogout = function () {
-                if (loginService.logout() ) {
-                    $location.path('/');
                 }
             };
 
@@ -42,5 +32,4 @@
         return ['$scope', '$location', 'loginService', 'auth', loginCtrl];
 
     });
-
 })();

@@ -21,30 +21,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <nav class="navbar navbar-default navbar-static-top" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-                <a href="#/" class="navbar-brand">Up and Running Todo Lists</a>
-            </div>
-
-            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation" ng-controller="loginCtrl">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a ui-toggle="true" href="#/tasks">See all lists</a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a ng-click="doLogout()">Logout</a></li>
-                </ul>
-            </nav>
-        </div>
-    </nav>
+    <nav-directive></nav-directive>
     <div class="container-fluid" ng-view=""></div>
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>

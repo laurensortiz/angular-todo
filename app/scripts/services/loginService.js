@@ -9,7 +9,7 @@
 
     define(dependencies, function () {
 
-        var loginService = function ($cookieStore, $q) {
+        var loginService = function ($rootScope, $cookieStore, $q) {
 
                 /**
                  * Get logged user data
@@ -46,6 +46,7 @@
                 doLogout = function () {
                     if (isLoggedIn()) {
                         $cookieStore.remove('user');
+                        $rootScope.$broadcast('user.isLoggedIn', { isLoggedIn: false });
                         return true;
                     } else {
                         return false;
@@ -58,6 +59,7 @@
                 doLogin = function (data) {
                     if (!isLoggedIn()) {
                         $cookieStore.put('user', data);
+                        $rootScope.$broadcast('user.isLoggedIn', { isLoggedIn: true });
                         return true;
                     }
                 };
@@ -70,7 +72,7 @@
             };
         };
 
-        return ['$cookieStore', '$q', loginService];
+        return ['$rootScope', '$cookieStore', '$q', loginService];
 
     });
 
