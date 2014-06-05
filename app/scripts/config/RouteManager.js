@@ -12,6 +12,10 @@
 
     var RouteManager = function ($routeProvider) {
         $routeProvider
+            .when('/', {
+                templateUrl: 'views/login.html',
+                controller: 'loginCtrl'
+            })
             .when('/tasks', {
                 templateUrl: 'views/task-list.html',
                 controller: 'tasksCtrl'

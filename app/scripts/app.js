@@ -23,8 +23,8 @@
             'ngResource',
             'ngSanitize',
             'ngRoute',
-            taskModule
-            // , loginModule
+            taskModule,
+            loginModule
         ]);
 
         // Shared localstorage service

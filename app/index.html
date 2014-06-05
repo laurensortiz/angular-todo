@@ -33,14 +33,14 @@
                 <a href="#/" class="navbar-brand">Up and Running Todo Lists</a>
             </div>
 
-            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation" ng-controller="loginCtrl">
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="#/lists">See all lists</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#/logout">Logout</a></li>
+                    <li><a ng-click="doLogout()">Logout</a></li>
                 </ul>
             </nav>
         </div>
