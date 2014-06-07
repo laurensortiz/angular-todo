@@ -1,25 +1,26 @@
 /**
- * Get all tasks
+ * Get all lists stored in Local Storage
  */
 (function () {
     'use strict';
 
     var dependencies = [
-        'controllers/modalCtrl'
+        'controllers/modal'
     ];
 
     define(dependencies, function (modalCtrl) {
 
-        var tasksCtrl = function ($scope, $timeout, $modal, $rootScope, TODO_LISTS, taskFactory, localstorageService) {
-            // Tasks lists
-            var lists = $scope.lists = localstorageService.getItems(TODO_LISTS);
+        var listCtrl = function ($scope, $timeout, $modal, $rootScope, TODO_LISTS, taskFactory, localstorageService) {
 
+            // Tasks lists
+            $scope.lists = localstorageService.getItems(TODO_LISTS);
+
+            // Alerts array
             $scope.alerts = [];
 
             /**
              * Create LIST form submitted
              * subscribed to 'list.form.submitted' pub. event
-             * @public
              */
             $scope.$on('list.form.submitted', function (event, data) {
                 localstorageService.storeItem(TODO_LISTS, data);
@@ -40,14 +41,13 @@
 
             /**
              * Open modal
-             * @public
              */
             $scope.openModal = function () {
                 var config = {
                         templateUrl: 'views/create-task-modal.html',
                         controller: modalCtrl
-                    },
-                    modalInstance = $modal.open(config);
+                    };
+                    $modal.open(config);
             };
 
             /**
@@ -59,7 +59,7 @@
 
         };
 
-        return ['$scope', '$timeout',  '$modal', '$rootScope', 'TODO_LISTS','taskFactory', 'localstorageService', tasksCtrl];
+        return ['$scope', '$timeout',  '$modal', '$rootScope', 'TODO_LISTS','taskFactory', 'localstorageService', listCtrl];
     });
 
 })();

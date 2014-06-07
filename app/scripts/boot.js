@@ -35,14 +35,14 @@
     yepnope({
         test: Modernizr.localstorage,
         nope: 'scripts/polyfill/localstorage.js'
-    })
+    });
 
     require.config({
         baseUrl: './scripts',
         paths: {
             'app': 'app'
           }
-        });
+    });
 
     require(['app'], function () {});
   });

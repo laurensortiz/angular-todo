@@ -55,7 +55,7 @@
                         .then(function (data) {
                             deferred.resolve(loginService.login(data));
                         }, function (data) {
-                            deferred.reject(data)
+                            deferred.reject(data);
                         });
 
                     return deferred.promise;

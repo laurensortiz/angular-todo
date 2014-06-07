@@ -6,10 +6,10 @@
 
     var dependencies = [
         'config/RouteManager',
-        'filters/friendlyUri',
-        'filters/prettyname',
+        'filters/friendly-uri',
+        'filters/pretty-name',
         'services/localstorage',
-        'directives/navDirective',
+        'directives/navigation',
         'loginModule',
         'taskModule'
     ];

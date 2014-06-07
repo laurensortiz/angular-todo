@@ -2,12 +2,12 @@
     'use strict';
 
     var dependencies = [
-        'services/taskFactory',
-        'controllers/tasksCtrl',
-        'controllers/listCtrl'
+        'services/task',
+        'controllers/list-detail',
+        'controllers/list'
     ];
 
-    define(dependencies, function (taskFactory, tasksCtrl, listCtrl) {
+    define(dependencies, function (taskFactory, listDetailCtrl, listCtrl) {
 
         var moduleName = 'ToDoList.Tasks';
 
@@ -15,8 +15,8 @@
                 'ui.bootstrap',
                 'ui.sortable'
             ])
-            .controller('tasksCtrl', tasksCtrl)
             .controller('listCtrl', listCtrl)
+            .controller('listDetailCtrl', listDetailCtrl)
             .factory('taskFactory', taskFactory)
             .constant('TODO_LISTS', 'todo-lists');
 

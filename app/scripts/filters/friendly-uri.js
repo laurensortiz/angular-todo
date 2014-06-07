@@ -8,7 +8,7 @@
             return function (input) {
                 return input.replace(/\s+/g, '-').toLowerCase();
             };
-        }
+        };
 
         return [friendlyUri];
     });

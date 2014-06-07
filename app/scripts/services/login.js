@@ -9,7 +9,7 @@
 
     define(dependencies, function () {
 
-        var loginService = function ($rootScope, $cookieStore, $q) {
+        var loginService = function ($rootScope, $cookieStore) {
 
                 /**
                  * Get logged user data
@@ -72,7 +72,7 @@
             };
         };
 
-        return ['$rootScope', '$cookieStore', '$q', loginService];
+        return ['$rootScope', '$cookieStore', loginService];
 
     });
 

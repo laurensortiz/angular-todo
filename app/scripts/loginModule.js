@@ -5,8 +5,8 @@
     'use strict';
 
     var dependencies = [
-        'services/loginService',
-        'controllers/loginCtrl',
+        'services/login',
+        'controllers/login',
         'services/auth'
     ];
 

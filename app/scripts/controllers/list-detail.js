@@ -1,5 +1,6 @@
 /**
- * Get specific task
+ * List detail controller
+ * Used for getting the details of each list with its tasks.
  */
 (function () {
     'use strict';
@@ -8,11 +9,10 @@
 
     define(dependencies, function () {
 
-        var listCtrl = function ($scope, $timeout, $routeParams, localstorageService, taskFactory) {
+        var listDetailCtrl = function ($scope, $timeout, $routeParams, localstorageService) {
 
             var routeName = $routeParams.task,
                 data,
-                deletedTasks = [],
                 tasks;
 
             /**
@@ -47,7 +47,7 @@
                             name: $scope.newTask,
                             completed: false
                         };
-debugger;
+
                     localstorageService.storeItem(routeName, data);
 
                     // Broadcast event if needed
@@ -78,9 +78,8 @@ debugger;
 
             /**
              * Mark an item as completed
-             * @param  {Object} element Element marked as completed
              */
-            $scope.complete = function (element) {
+            $scope.complete = function () {
                 // Store partial state on LS
                 localstorageService.updateItem(routeName, $scope.tasks);
             };
@@ -91,7 +90,7 @@ debugger;
             $scope.clearCompleted = function () {
                 // Store deleted tasks
                 var deletedTasks = tasks.filter(function (task) {
-                    return task.completed
+                    return task.completed;
                 });
 
                 // Add deleted tasks to the alerts array
@@ -106,7 +105,7 @@ debugger;
 
         };
 
-        return ['$scope', '$timeout', '$routeParams', 'localstorageService', 'taskFactory', listCtrl];
+        return ['$scope', '$timeout', '$routeParams', 'localstorageService', listDetailCtrl];
 
     });
 

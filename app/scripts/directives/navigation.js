@@ -43,7 +43,7 @@
                     $scope.doLogout = function () {
                         loginService.logout();
                         $location.path('/');
-                    }
+                    };
                 },
                 link: function ($scope, element) {
                     $scope.isLoggedIn = loginService.isLoggedIn();

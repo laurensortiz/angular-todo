@@ -9,7 +9,7 @@
 
     define(dependencies, function () {
 
-        var localStorageService = function ($rootScope) {
+        var localStorageService = function () {
 
             var resultItems = [];
                 /**
@@ -111,7 +111,7 @@
             };
         };
 
-        return ['$rootScope', localStorageService];
+        return [localStorageService];
     });
 
 })();

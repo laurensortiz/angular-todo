@@ -17,12 +17,12 @@
                 controller: 'loginCtrl'
             })
             .when('/tasks', {
-                templateUrl: 'views/task-list.html',
-                controller: 'tasksCtrl'
+                templateUrl: 'views/lists.html',
+                controller: 'listCtrl'
             })
             .when('/tasks/:task', {
-                templateUrl: 'views/task-name.html',
-                controller: 'listCtrl'
+                templateUrl: 'views/list-detail.html',
+                controller: 'listDetailCtrl'
             })
             .otherwise({
               redirectTo: '/'
