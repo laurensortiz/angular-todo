@@ -30,7 +30,7 @@
   );
 
   // Excecute when DOM ready
-  head.ready('ALL', function () {
+  head.ready(function () {
 
     yepnope({
         test: Modernizr.localstorage,
@@ -41,7 +41,7 @@
         baseUrl: './scripts',
         paths: {
             'app': 'app'
-          }
+        }
     });
 
     require(['app'], function () {});

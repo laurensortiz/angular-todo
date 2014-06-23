@@ -44,12 +44,21 @@
                         loginService.logout();
                         $location.path('/');
                     };
-                },
-                link: function ($scope, element) {
+
                     $scope.isLoggedIn = loginService.isLoggedIn();
                     $scope.$on('user.isLoggedIn', function (event, data) {
                         $scope.isLoggedIn = data.isLoggedIn;
                     });
+                },
+                /**
+                    TODO:
+                    - ASK RENSO ABOUT LINK / CONTROLLER
+                **/
+                link: function ($scope, element) {
+                    // $scope.isLoggedIn = loginService.isLoggedIn();
+                    // $scope.$on('user.isLoggedIn', function (event, data) {
+                    //     $scope.isLoggedIn = data.isLoggedIn;
+                    // });
                 }
             };
 

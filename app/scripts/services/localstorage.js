@@ -1,6 +1,6 @@
 /**
  * localStorage service
- * Get all tasks
+ * Used for interact with the LS HTML5 API
  */
 (function () {
     'use strict';
@@ -10,8 +10,6 @@
     define(dependencies, function () {
 
         var localStorageService = function () {
-
-            var resultItems = [];
                 /**
                  * Get localstorage items
                  * @public
@@ -26,11 +24,17 @@
                  * Store new localstorage item
                  * @public
                  * @param {Object} data Data to store on localStorage
+                 * @param {String} key Localstorage key
                  */
                 storeItem = function (key, data) {
+                    var item = {},
+                        resultItems = [],
+                        element;
 
                     // Create an object using the data from the FORM
-                    var item = transformData(data);
+                    for (element in data) {
+                        item[element] = data[element];
+                    }
 
                     // Get previous items for the key
                     resultItems = getItems(key);
@@ -52,13 +56,6 @@
                     }
                     data = cleanUpData(data);
                     localStorage.setItem(key, JSON.stringify(data));
-                },
-                /**
-                 * Clear localstorage
-                 * @public
-                 */
-                clearStorage = function () {
-                    console.log('Clear storage...');
                 },
                 /**
                  * Remove any prefixed property from the object with '$'
@@ -83,31 +80,12 @@
                     }
 
                     return data;
-                },
-                /**
-                 * Transform data so it will be easy to store using html5 localStorage
-                 * @method transformData
-                 * @param {Object} data Data to be transformed in order to save it on LS
-                 * @private
-                 * @return {Object} Transformed data
-                 */
-                transformData = function (data) {
-                    // Create the object to store
-                    var item = {},
-                        element;
-
-                    for (element in data) {
-                        item[element] = data[element];
-                    }
-
-                    return item;
                 };
 
             return {
                 getItems: getItems,
                 storeItem: storeItem,
-                updateItem: updateItem,
-                clearStorage: clearStorage
+                updateItem: updateItem
             };
         };
 
