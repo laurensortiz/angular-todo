@@ -1,6 +1,3 @@
-# Up and Running - Front End Developer Test
-
-
 ## App initialization
 Run the following commands in order to start the application
 
